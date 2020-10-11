@@ -174,7 +174,6 @@ func (h configHandler) Bind(bindDN, bindSimplePw string, conn net.Conn) (resultC
 func (h configHandler) Search(bindDN string, searchReq ldap.SearchRequest, conn net.Conn) (result ldap.ServerSearchResult, err error) {
 	bindDN = strings.ToLower(bindDN)
 	baseDN := strings.ToLower("," + h.cfg.Backend.BaseDN)
-	searchBaseDN := strings.ToLower(searchReq.BaseDN)
 	h.log.Debug(fmt.Sprintf("%+v\n", searchReq))
 	h.log.Debug(fmt.Sprintf("Search request as %s from %s for %s", bindDN, conn.RemoteAddr().String(), searchReq.Filter))
 	stats.Frontend.Add("search_reqs", 1)
